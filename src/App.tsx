@@ -19,12 +19,6 @@ export const App: React.FC = () => {
   } = useSignalR();
   
 
-  useEffect(() => {
-    if (isConnection) {
-   connection?.start()
- }
-  },[connection, isConnection])
-
 
   return (
 		<div>

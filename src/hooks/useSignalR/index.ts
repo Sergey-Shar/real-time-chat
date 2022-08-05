@@ -48,6 +48,7 @@ export const useSignalR = () => {
 					skipNegotiation: true,
 					transport: signalR.HttpTransportType.WebSockets,
 				})
+				.withAutomaticReconnect()
 				.configureLogging(signalR.LogLevel.Information)
 				.build();
 
