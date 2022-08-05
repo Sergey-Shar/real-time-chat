@@ -30,7 +30,7 @@ export const useSignalR = () => {
 	const joinRoom: TJoinRoom = async (user, room) => {
 		try {
 			const connection = new signalR.HubConnectionBuilder()
-				.withUrl('http://localhost:5086/chat', {
+				.withUrl('https://signalr-test-chat.herokuapp.com/chat', {
 					skipNegotiation: true,
 					transport: signalR.HttpTransportType.WebSockets,
 				})
