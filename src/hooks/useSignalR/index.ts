@@ -9,7 +9,10 @@ import { useLocalStorage } from 'hooks/useLocalStorage';
 import { useAppSnackbar } from 'hooks/useSnackBar';
 
 export const useSignalR = () => {
+
     const [connection, setConnection] = useState<HubConnection>();
+
+    console.log(connection?.state)
     
     const [isConnection, setIsConnection] = useLocalStorage<boolean>(false, 'isConnection');
     
