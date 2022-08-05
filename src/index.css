@@ -1,4 +1,7 @@
 
-@import-normalize; /* bring in normalize.css styles */
+@import-normalize; 
 
-/* rest of app styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
