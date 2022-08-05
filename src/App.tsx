@@ -3,6 +3,7 @@ import { Chat } from 'components/Chat';
 import { useSignalR } from 'hooks/useSignalR';
 import { Header } from 'components/Header';
 import { UsersCount } from 'components/UsersOnline';
+import { useEffect } from 'react';
 
 
 export const App: React.FC = () => {
@@ -15,7 +16,14 @@ export const App: React.FC = () => {
 		joinRoom,
 		sendMessage,
 		closeConnection,
-	} = useSignalR();
+  } = useSignalR();
+  
+
+  useEffect(() => {
+    if (isConnection) {
+   connection?.start()
+ }
+  },[connection, isConnection])
 
 
   return (

@@ -106,7 +106,10 @@ export const useSignalR = () => {
 			const e = error as Error;
 			snack(`Error:${e?.message}!`, 'error', 3000);
 		}
-	}, [connection, setCountUsers, setIsConnection, setMessages, setUsers, snack]);
+    }, [connection, setCountUsers, setIsConnection, setMessages, setUsers, snack]);
+    
+
+    
 
 	return {
 		messages,
