@@ -30,7 +30,10 @@ export const useSignalR = () => {
 	const joinRoom: TJoinRoom = async (user, room) => {
 		try {
 			const connection = new signalR.HubConnectionBuilder()
-				.withUrl('http://localhost:5086/chat')
+				.withUrl('http://localhost:5086/chat', {
+					skipNegotiation: true,
+					transport: signalR.HttpTransportType.WebSockets,
+				})
 				.configureLogging(signalR.LogLevel.Information)
 				.build();
 
