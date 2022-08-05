@@ -12,7 +12,9 @@ export const useSignalR = () => {
 
     const [connection, setConnection] = useState<HubConnection>();
 
-    console.log(connection?.state)
+    console.log(connection?.connectionId, connection?.onreconnected, connection?.keepAliveIntervalInMilliseconds, connection?.onreconnecting, connection?.stream)
+    
+
     
     const [isConnection, setIsConnection] = useLocalStorage<boolean>(false, 'isConnection');
     
@@ -48,7 +50,7 @@ export const useSignalR = () => {
 					skipNegotiation: true,
 					transport: signalR.HttpTransportType.WebSockets,
 				})
-				//.withAutomaticReconnect()
+				.withAutomaticReconnect()
 				.configureLogging(signalR.LogLevel.Information)
 				.build();
 
@@ -62,7 +64,7 @@ export const useSignalR = () => {
 			});
 
 			connection.onclose((e) => {
-                //setConnection(undefined);
+                setConnection(undefined);
                 setMessages([]);
 				setUsers([]);
 			});
