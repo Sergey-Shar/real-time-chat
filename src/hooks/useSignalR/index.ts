@@ -11,17 +11,21 @@ import { useAppSnackbar } from 'hooks/useSnackBar';
 export const useSignalR = () => {
 	const [connection, setConnection] = useState<HubConnection>();
 
-	const [isConnection, setIsConnection] = useLocalStorage<boolean>(
-		false,
-		'connection',
-	);
+	// const [isConnection, setIsConnection] = useLocalStorage<boolean>(
+	// 	false,
+	// 	'connection',
+	// );
 
-	const [messages, setMessages] = useLocalStorage<TMessageObj[]>(
-		[],
-		'messages',
-	);
+    const [messages, setMessages] = useState<any>([])
 
-    const [users, setUsers] = useLocalStorage<string[]>([''], 'users');
+	// const [messages, setMessages] = useLocalStorage<TMessageObj[]>(
+	// 	[],
+	// 	'messages',
+	// );
+
+    const [users, setUsers] = useState<string[]>([])
+
+    // const [users, setUsers] = useLocalStorage<string[]>([''], 'users');
     
     const [countUsers, setCountUsers] = useLocalStorage<string | number>('0', 'usersOnline');
 
@@ -47,7 +51,9 @@ export const useSignalR = () => {
 			});
 
 			connection.onclose((e) => {
-				setConnection(undefined);
+                setConnection(undefined);
+                setMessages([]);
+				setUsers([]);
 			});
 
 			await connection.start();
@@ -56,7 +62,7 @@ export const useSignalR = () => {
 
 			snack(`Hi ${user}!`, 'success', 3000);
 
-			setIsConnection(!!connection);
+			// setIsConnection(!!connection);
 			setConnection(connection);
 		} catch (error) {
 			const e = error as Error;
@@ -79,20 +85,20 @@ export const useSignalR = () => {
 	const closeConnection = useCallback(async () => {
 		try {
 			await connection?.stop();
-			setIsConnection(false);
-			setMessages([]);
-            setUsers([]);
+			// setIsConnection(false);
+			
             setCountUsers('0');
 		} catch (error) {
 			const e = error as Error;
 			snack(`Error:${e?.message}!`, 'error', 3000);
 		}
-	}, [connection, setCountUsers, setIsConnection, setMessages, setUsers, snack]);
+	}, [connection, setCountUsers, snack]);
 
 	return {
 		messages,
 		users,
-        isConnection,
+        // isConnection,
+        connection,
         countUsers,
 		joinRoom,
 		sendMessage,

@@ -9,7 +9,7 @@ export const App: React.FC = () => {
   const {
     messages,
     users,
-    isConnection,
+    connection,
     countUsers,
     joinRoom,
     sendMessage,
@@ -19,8 +19,8 @@ export const App: React.FC = () => {
 
   return (
 		<div>
-			<Header>{ isConnection && <UsersCount countUsers={countUsers} />}</Header>
-			{!isConnection ? (
+			<Header>{ !connection&& <UsersCount countUsers={countUsers} />}</Header>
+			{!connection ? (
 				<Lobby joinRoom={joinRoom} />
 			) : (
 				<Chat
