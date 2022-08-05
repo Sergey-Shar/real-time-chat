@@ -5,9 +5,11 @@ import { TJoinRoom } from 'types';
 
 
 interface Lobbyprops {
-  joinRoom: TJoinRoom
+  // joinRoom: TJoinRoom
+  joinRoom:(...value:any) => void
+  connection:any
 }
-export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
+export const Lobby: FC<Lobbyprops> = ({ joinRoom, connection }) => {
 
   const inputUser = useInput('');
   const inputRoom = useInput('');
@@ -16,9 +18,9 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
   const onSubmit = useCallback(
     (event: React.MouseEvent<HTMLFormElement>) => {
       event.preventDefault();
-      joinRoom(inputUser.value, inputRoom.value);
+      joinRoom(connection,inputUser.value, inputRoom.value);
     },
-    [inputRoom.value, inputUser.value, joinRoom ],
+    [connection, inputRoom.value, inputUser.value, joinRoom],
   );
 
   return (

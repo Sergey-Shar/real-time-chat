@@ -5,6 +5,8 @@ import { Header } from 'components/Header';
 import { UsersCount } from 'components/UsersOnline';
 import { useEffect } from 'react';
 
+import * as signalR from '@microsoft/signalr';
+
 
 export const App: React.FC = () => {
   const {
@@ -18,20 +20,30 @@ export const App: React.FC = () => {
 		joinRoom,
 		sendMessage,
 		closeConnection,
+		setConnection,
 	} = useSignalR();
+  
+    
   
 
   useEffect(() => {
-    if (isConnection) {
-     joinRoom(user,room)
-   }
-  }, [isConnection, joinRoom, room, user])
+   const connection = new signalR.HubConnectionBuilder()
+			.withUrl('https://signalr-test-chat.herokuapp.com/chat', {
+				skipNegotiation: true,
+				transport: signalR.HttpTransportType.WebSockets,
+			})
+			.withAutomaticReconnect()
+			.configureLogging(signalR.LogLevel.Information)
+     .build();
+    
+    setConnection(connection)
+  }, [setConnection])
   
   return (
 		<div>
 			<Header>{ connection && <UsersCount countUsers={countUsers} />}</Header>
 			{  !isConnection ? (
-				<Lobby joinRoom={joinRoom} />
+				<Lobby joinRoom={joinRoom} connection={connection} />
 			) : (
 				<Chat
 					messages={messages}

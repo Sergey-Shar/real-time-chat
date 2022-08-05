@@ -50,16 +50,9 @@ export const useSignalR = () => {
 
 	const snack = useAppSnackbar();
 
-    const joinRoom: TJoinRoom = async (user, room) => {
+    const joinRoom = async (connection:HubConnection, user:string, room:string) => {
 		try {
-			const connection = new signalR.HubConnectionBuilder()
-				.withUrl('https://signalr-test-chat.herokuapp.com/chat', {
-					skipNegotiation: true,
-					transport: signalR.HttpTransportType.WebSockets,
-				})
-				.withAutomaticReconnect()
-				.configureLogging(signalR.LogLevel.Information)
-				.build();
+			
 
 			connection.on('UsersInRoom', (users: string[]) => {
                 setUsers(users);
@@ -127,13 +120,14 @@ export const useSignalR = () => {
 	return {
 		messages,
 		users,
-        isConnection,
-        connection,
-        countUsers,
-        user,
-        room,
+		isConnection,
+		connection,
+		countUsers,
+		user,
+		room,
 		joinRoom,
 		sendMessage,
 		closeConnection,
+		setConnection,
 	};
 };
