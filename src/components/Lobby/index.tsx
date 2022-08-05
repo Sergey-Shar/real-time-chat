@@ -1,26 +1,21 @@
 import { useInput } from 'hooks/useInput';
-import { useLocalStorage } from 'hooks/useLocalStorage';
 import React, { FC, useCallback } from 'react';
 import { TJoinRoom } from 'types';
 
-
 interface Lobbyprops {
-  // joinRoom: TJoinRoom
-  joinRoom:(...value:any) => void
-  connection:any
+  joinRoom: TJoinRoom
 }
-export const Lobby: FC<Lobbyprops> = ({ joinRoom, connection }) => {
+export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
 
   const inputUser = useInput('');
   const inputRoom = useInput('');
 
-
   const onSubmit = useCallback(
     (event: React.MouseEvent<HTMLFormElement>) => {
       event.preventDefault();
-      joinRoom(connection,inputUser.value, inputRoom.value);
+      joinRoom(inputUser.value, inputRoom.value);
     },
-    [connection, inputRoom.value, inputUser.value, joinRoom],
+    [inputRoom.value, inputUser.value, joinRoom],
   );
 
   return (
