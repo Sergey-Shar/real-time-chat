@@ -13,13 +13,20 @@ export const App: React.FC = () => {
 		connection,
 		isConnection,
 		countUsers,
+		user,
+		room,
 		joinRoom,
 		sendMessage,
 		closeConnection,
-  } = useSignalR();
+	} = useSignalR();
   
 
-
+  useEffect(() => {
+    if (isConnection) {
+     joinRoom(user,room)
+   }
+  }, [isConnection, joinRoom, room, user])
+  
   return (
 		<div>
 			<Header>{ connection && <UsersCount countUsers={countUsers} />}</Header>

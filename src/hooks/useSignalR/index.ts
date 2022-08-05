@@ -12,7 +12,12 @@ export const useSignalR = () => {
 
     const [connection, setConnection] = useState<HubConnection>();
 
-    console.log(connection?.connectionId, connection?.onreconnected, connection?.keepAliveIntervalInMilliseconds, connection?.onreconnecting, connection?.stream)
+    console.log(
+        connection?.connectionId,
+        connection?.onreconnected,
+        connection?.keepAliveIntervalInMilliseconds,
+        connection?.onreconnecting,
+        connection?.stream)
     
 
     
@@ -37,13 +42,15 @@ export const useSignalR = () => {
 
     const [users, setUsers] = useLocalStorage<string[]>([''], 'users');
 
+    const [user, setUser] = useLocalStorage('', 'user')
+
       const [room, setRoom] = useLocalStorage('', 'room');
     
     const [countUsers, setCountUsers] = useLocalStorage<string | number>('0', 'usersOnline');
 
 	const snack = useAppSnackbar();
 
-	const joinRoom: TJoinRoom = async (user, room) => {
+    const joinRoom: TJoinRoom = async (user, room) => {
 		try {
 			const connection = new signalR.HubConnectionBuilder()
 				.withUrl('https://signalr-test-chat.herokuapp.com/chat', {
@@ -78,6 +85,9 @@ export const useSignalR = () => {
 			// setIsConnection(!!connection);
             setConnection(connection);
             setIsConnection(connection)
+            setUser(user)
+            setRoom(room)
+
 		} catch (error) {
 			const e = error as Error;
 			snack(`Error:${e?.message}!`, 'error', 3000);
@@ -120,6 +130,8 @@ export const useSignalR = () => {
         isConnection,
         connection,
         countUsers,
+        user,
+        room,
 		joinRoom,
 		sendMessage,
 		closeConnection,
