@@ -9,23 +9,30 @@ import { useLocalStorage } from 'hooks/useLocalStorage';
 import { useAppSnackbar } from 'hooks/useSnackBar';
 
 export const useSignalR = () => {
-	const [connection, setConnection] = useState<HubConnection>();
+    const [connection, setConnection] = useState<HubConnection>();
+    
+    const [isConnection, setIsConnection] = useLocalStorage<boolean>(false, 'isConnection');
+    
+    //const [connection, setConnection] = useLocalStorage<HubConnection | undefined>(undefined,'connection');
+    
 
 	// const [isConnection, setIsConnection] = useLocalStorage<boolean>(
 	// 	false,
 	// 	'connection',
 	// );
 
-    const [messages, setMessages] = useState<any>([])
+    //const [messages, setMessages] = useState<any>([])
 
-	// const [messages, setMessages] = useLocalStorage<TMessageObj[]>(
-	// 	[],
-	// 	'messages',
-	// );
+	const [messages, setMessages] = useLocalStorage<TMessageObj[]>(
+		[],
+		'messages',
+	);
 
-    const [users, setUsers] = useState<string[]>([])
+    //const [users, setUsers] = useState<string[]>([])
 
-    // const [users, setUsers] = useLocalStorage<string[]>([''], 'users');
+    const [users, setUsers] = useLocalStorage<string[]>([''], 'users');
+
+      const [room, setRoom] = useLocalStorage('', 'room');
     
     const [countUsers, setCountUsers] = useLocalStorage<string | number>('0', 'usersOnline');
 
@@ -63,7 +70,8 @@ export const useSignalR = () => {
 			snack(`Hi ${user}!`, 'success', 3000);
 
 			// setIsConnection(!!connection);
-			setConnection(connection);
+            setConnection(connection);
+            setIsConnection(connection)
 		} catch (error) {
 			const e = error as Error;
 			snack(`Error:${e?.message}!`, 'error', 3000);
@@ -84,20 +92,23 @@ export const useSignalR = () => {
 
 	const closeConnection = useCallback(async () => {
 		try {
-			await connection?.stop();
-			// setIsConnection(false);
+            await connection?.stop();
+            //setConnection(undefined);
+            setIsConnection(false);
+            setMessages([]);
+			setUsers([]);
 			
             setCountUsers('0');
 		} catch (error) {
 			const e = error as Error;
 			snack(`Error:${e?.message}!`, 'error', 3000);
 		}
-	}, [connection, setCountUsers, snack]);
+	}, [connection, setCountUsers, setIsConnection, setMessages, setUsers, snack]);
 
 	return {
 		messages,
 		users,
-        // isConnection,
+        isConnection,
         connection,
         countUsers,
 		joinRoom,

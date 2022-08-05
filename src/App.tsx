@@ -7,20 +7,21 @@ import { UsersCount } from 'components/UsersOnline';
 
 export const App: React.FC = () => {
   const {
-    messages,
-    users,
-    connection,
-    countUsers,
-    joinRoom,
-    sendMessage,
-    closeConnection,
-  } = useSignalR();
+		messages,
+		users,
+		connection,
+		isConnection,
+		countUsers,
+		joinRoom,
+		sendMessage,
+		closeConnection,
+	} = useSignalR();
 
 
   return (
 		<div>
-			<Header>{ !connection&& <UsersCount countUsers={countUsers} />}</Header>
-			{!connection ? (
+			<Header>{ connection && <UsersCount countUsers={countUsers} />}</Header>
+			{  !isConnection ? (
 				<Lobby joinRoom={joinRoom} />
 			) : (
 				<Chat
