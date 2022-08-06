@@ -22,7 +22,7 @@ export const useSignalR = () => {
 
 	const snack = useAppSnackbar();
 
-	const [play] = useSound(sound);
+	// const [play] = useSound(sound);
 
     const joinRoom: TJoinRoom = async (user, room) => {
 			try {
@@ -38,7 +38,7 @@ export const useSignalR = () => {
 				connection.on('UsersInRoom', (users) => {
 					setUsers(users);
 					setCountUsers(users.length);
-					play()
+					//play()
 				});
 
 				connection.on('ReciveMessage', (user:string, message:string) => {

@@ -5,7 +5,7 @@ import { useSignalR } from 'hooks/useSignalR';
 import { Header } from 'components/Header';
 import { UsersCount } from 'components/UsersOnline';
 
-export const App= () => {
+export const App:React.FC = () => {
   const {
 		messages,
 		users,
