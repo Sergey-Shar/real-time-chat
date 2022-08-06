@@ -6,6 +6,9 @@ import { HubConnection } from '@microsoft/signalr';
 import { TJoinRoom,TSendMessage } from 'types';
 
 import { useAppSnackbar } from 'hooks/useSnackBar';
+import useSound from 'use-sound';
+
+import sound from '../../sounds/drop.mp3';
 
 export const useSignalR = () => {
 
@@ -18,6 +21,8 @@ export const useSignalR = () => {
     const [countUsers, setCountUsers] = useState<string>('0');
 
 	const snack = useAppSnackbar();
+
+	const [play] = useSound(sound);
 
     const joinRoom: TJoinRoom = async (user, room) => {
 			try {
@@ -33,6 +38,7 @@ export const useSignalR = () => {
 				connection.on('UsersInRoom', (users) => {
 					setUsers(users);
 					setCountUsers(users.length);
+					play()
 				});
 
 				connection.on('ReciveMessage', (user:string, message:string) => {

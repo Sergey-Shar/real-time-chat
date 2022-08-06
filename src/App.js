@@ -4,9 +4,6 @@ import { Chat } from 'components/Chat';
 import { useSignalR } from 'hooks/useSignalR';
 import { Header } from 'components/Header';
 import { UsersCount } from 'components/UsersOnline';
-import useSound from 'use-sound';
-
-import sound from './common/sounds/drop.mp3';
 
 export const App= () => {
   const {
@@ -18,8 +15,6 @@ export const App= () => {
 		sendMessage,
 		closeConnection,
   } = useSignalR();
-  
-  const [play] = useSound(sound);
   
   return (
 		<div>
@@ -34,8 +29,6 @@ export const App= () => {
 					users={users}
 				/>
       )}
-      
-      <button onClick={play}>Boop!</button>
 		</div>
 	);
 };
