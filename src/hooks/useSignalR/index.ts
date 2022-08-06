@@ -14,7 +14,7 @@ export const useSignalR = () => {
 
     const [connection, setConnection] = useState<HubConnection>();
 
-    const [messages, setMessages] = useState<any>();
+    const [messages, setMessages] = useState<any>([]);
 
     const [users, setUsers] = useState([]);
 
