@@ -3,6 +3,10 @@ import { useInput } from 'hooks/useInput';
 import { useCallback } from 'react';
 import { TSendMessage } from 'types';
 
+import useSound from 'use-sound';
+
+import sound from '../../sounds/drop.mp3';
+
 interface SendMessageFormProps {
   sendMessage: TSendMessage;
 }
@@ -10,26 +14,29 @@ interface SendMessageFormProps {
 export const SendMessageForm: React.FC<SendMessageFormProps> = ({
   sendMessage,
 }) => {
-  const inputMessage = useInput('');
+	const inputMessage = useInput('');
 
-  const onSubmit = useCallback(
-    (event: React.MouseEvent<HTMLFormElement>) => {
-      event.preventDefault();
+	const [play] = useSound(sound);
+
+	const onSubmit = useCallback(
+		(event: React.MouseEvent<HTMLFormElement>) => {
+			event.preventDefault();
       sendMessage(inputMessage.value);
-      inputMessage.clear();
-    },
-    [inputMessage, sendMessage],
-  );
-  return (
-    <form onSubmit={onSubmit}>
-      <input
-        value={inputMessage.value}
-        onChange={inputMessage.onChahge}
-        placeholder="Send a message..."
-      />
-      <button type="submit" disabled={!inputMessage.value}>
-        Send
-      </button>
-    </form>
-  );
+      play()
+			inputMessage.clear();
+		},
+    [inputMessage, play, sendMessage],
+	);
+	return (
+		<form onSubmit={onSubmit}>
+			<input
+				value={inputMessage.value}
+				onChange={inputMessage.onChahge}
+				placeholder="Сообщение..."
+			/>
+			<button type="submit" disabled={!inputMessage.value}>
+				Send
+			</button>
+		</form>
+	);
 };
