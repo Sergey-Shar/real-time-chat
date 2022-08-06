@@ -16,7 +16,7 @@ export const useSignalR = () => {
 
     const [messages, setMessages] = useState<any>();
 
-    const [users, setUsers] = useState<string[]>(['']);
+    const [users, setUsers] = useState([]);
 
     const [countUsers, setCountUsers] = useState<string>('0');
 
@@ -40,7 +40,7 @@ export const useSignalR = () => {
 					//play()
 				});
 
-				connection.on('ReciveMessage', (user:string, message:string) => {
+				connection.on('ReciveMessage', (user, message) => {
 					setMessages((messages:string[]) => [...messages, { user, message }]);
 				});
 
