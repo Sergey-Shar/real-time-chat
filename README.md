@@ -8,11 +8,11 @@ This project is the implementation of the client part for a chat in which you ca
 
 ## Tools:
 
-*[React](https://ru.reactjs.org/)
+* [React](https://ru.reactjs.org/)
 
-*[Typescript](https://www.typescriptlang.org/)
+* [Typescript](https://www.typescriptlang.org/)
 
-*[Tailwind](https://tailwindcss.com/)
+* [Tailwind](https://tailwindcss.com/)
 
 
 
