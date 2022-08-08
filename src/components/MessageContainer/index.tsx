@@ -1,10 +1,27 @@
+import { useEffect, useRef } from 'react';
 import { TMessageObj } from 'types';
 interface Containerprops {
   messages: TMessageObj[];
 }
 export const MessageContainer: React.FC<Containerprops> = ({ messages }) => {
+
+  const messageRef = useRef(null);
+
+  useEffect(() => {
+    if (messageRef && messageRef.current) {
+      const { scrollHeight, clientHeight } = messageRef.current;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      messageRef.current?.scrollTo({
+        left: 0,
+        top: scrollHeight - clientHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, [messages]);
   return (
     <div
+      ref={messageRef}
       className="p-2 row-span-5  col-span-4 
       md:col-span-3 dark:bg-gray-dark
       relative
