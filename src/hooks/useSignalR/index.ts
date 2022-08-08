@@ -50,7 +50,7 @@ export const useSignalR = () => {
 
       await connection.invoke('JoinRoom', { user, room });
 
-      snack(`Hi ${user}!`, 'success', 3000);
+      snack(`Добро пожаловать в чат, ${user}!`, 'success', 3000);
       play();
       setConnection(connection);
     } catch (error) {
