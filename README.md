@@ -14,6 +14,8 @@ This project is the implementation of the client part for a chat in which you ca
 
 * [Tailwind](https://tailwindcss.com/)
 
+* [Heroku](https://heroku.com/)
+
 
 
 
