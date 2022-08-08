@@ -1,36 +1,35 @@
-
 import { Lobby } from 'components/Lobby';
 import { Chat } from 'components/Chat';
 import { useSignalR } from 'hooks/useSignalR';
 import { Header } from 'components/Header';
-import { UsersCount } from 'components/UsersOnline';
 
-export const App:React.FC = () => {
+export const App: React.FC = () => {
   const {
-		messages,
-		users,
-		connection,
-		countUsers,
-		joinRoom,
-		sendMessage,
-		closeConnection,
+    messages,
+    users,
+    connection,
+    countUsers,
+    joinRoom,
+    sendMessage,
+    closeConnection,
   } = useSignalR();
-  
+	
   return (
-		<div>
-			<Header>{connection && <UsersCount countUsers={countUsers} />}</Header>
-			{!connection ? (
-				<Lobby joinRoom={joinRoom} />
-			) : (
-				<Chat
-					messages={messages}
-					sendMessage={sendMessage}
-					closeConnection={closeConnection}
-					users={users}
-				/>
+    <div className="dark:bg-gray-dark transition duration-500">
+      <Header
+        connection={connection}
+        closeConnection={closeConnection}
+        countUsers={countUsers}
+      />  
+      {!connection ? (
+        <Lobby joinRoom={joinRoom} />
+      ) : (
+        <Chat
+          messages={messages}
+          sendMessage={sendMessage}
+          users={users}
+        />
       )}
-		</div>
-	);
+    </div>
+  );
 };
-
-

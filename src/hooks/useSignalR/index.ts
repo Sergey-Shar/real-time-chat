@@ -1,97 +1,92 @@
 import { useCallback, useState } from 'react';
 import * as signalR from '@microsoft/signalr';
-
 import { HubConnection } from '@microsoft/signalr';
-
-import { TJoinRoom,TSendMessage } from 'types';
-
+import { TJoinRoom, TSendMessage } from 'types';
 import { useAppSnackbar } from 'hooks/useSnackBar';
 import useSound from 'use-sound';
 
-import sound from '../../sounds/drop.mp3';
+import soundSuccess from '../../sounds/success-bell.mp3';
 
 export const useSignalR = () => {
+  const [connection, setConnection] = useState<HubConnection>();
 
-    const [connection, setConnection] = useState<HubConnection>();
+  const [messages, setMessages] = useState<any>([]);
 
-    const [messages, setMessages] = useState<any>([]);
+  const [users, setUsers] = useState([]);
 
-    const [users, setUsers] = useState([]);
+  const [countUsers, setCountUsers] = useState<string>('0');
 
-    const [countUsers, setCountUsers] = useState<string>('0');
+  const snack = useAppSnackbar();
 
-	const snack = useAppSnackbar();
+  const [play] = useSound(soundSuccess);
 
-	// const [play] = useSound(sound);
+  const joinRoom: TJoinRoom = async (user, room) => {
+    try {
+      const connection = new signalR.HubConnectionBuilder()
+        .withUrl('https://signalr-test-chat.herokuapp.com/chat', {
+          skipNegotiation: true,
+          transport: signalR.HttpTransportType.WebSockets,
+        })
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
 
-    const joinRoom: TJoinRoom = async (user, room) => {
-			try {
-				const connection = new signalR.HubConnectionBuilder()
-					.withUrl('https://signalr-test-chat.herokuapp.com/chat', {
-						skipNegotiation: true,
-						transport: signalR.HttpTransportType.WebSockets,
-					})
-					.configureLogging(signalR.LogLevel.Information)
-					.build();
+      connection.on('UsersInRoom', (users) => {
+        setUsers(users);
+        setCountUsers(users.length);
+      });
 
-				connection.on('UsersInRoom', (users) => {
-					setUsers(users);
-					setCountUsers(users.length);
-					//play()
-				});
+      connection.on('ReciveMessage', (user, message) => {
+        setMessages((messages: string[]) => [...messages, { user, message }]);
+      });
 
-				connection.on('ReciveMessage', (user, message) => {
-					setMessages((messages:string[]) => [...messages, { user, message }]);
-				});
+      connection.onclose((e) => {
+        setConnection(undefined);
+        setMessages([]);
+        setUsers([]);
+        setCountUsers('0');
+      });
 
-				connection.onclose((e) => {
-					setConnection(undefined);
-					setMessages([]);
-                    setUsers([]);
-                    setCountUsers('0');
-				});
+      await connection.start();
 
-				await connection.start();
+      await connection.invoke('JoinRoom', { user, room });
 
-				await connection.invoke('JoinRoom', { user, room });
+      snack(`Hi ${user}!`, 'success', 3000);
+      play();
+      setConnection(connection);
+    } catch (error) {
+      const e = error as Error;
+      snack(`Error:${e?.message}!`, 'error', 3000);
+    }
+  };
 
-				snack(`Hi ${user}!`, 'success', 3000);
-				setConnection(connection);
-				
-			} catch (error) {
-				const e = error as Error;
-				snack(`Error:${e?.message}!`, 'error', 3000);
-			}
-		};
+  const sendMessage: TSendMessage = useCallback(
+    async (message: string) => {
+      try {
+        await connection?.invoke('SendMessage', message);
+      } catch (error) {
+        const e = error as Error;
+        snack(`Error:${e?.message}!`, 'error', 3000);
+      }
+    },
+    [connection, snack],
+  );
 
-	const sendMessage: TSendMessage = useCallback(
-		async (message: string) => {
-			try {
-				await connection?.invoke('SendMessage', message);
-			} catch (error) {
-				const e = error as Error;
-				snack(`Error:${e?.message}!`, 'error', 3000);
-			}
-		},
-		[connection, snack],
-	);
+  const closeConnection = useCallback(async () => {
+    try {
+      await connection?.stop();
+    } catch (error) {
+      const e = error as Error;
+      snack(`Error:${e?.message}!`, 'error', 3000);
+    }
+  }, [connection, snack]);
 
-	const closeConnection = useCallback(async () => {
-		try {
-            await connection?.stop();
-		} catch (error) {
-			const e = error as Error;
-			snack(`Error:${e?.message}!`, 'error', 3000);
-		}
-    }, [connection, snack]);
-    
-	return {
-		messages,
-		users,
-		connection,
-		countUsers,
-		joinRoom,
-		sendMessage,
-		closeConnection,
-	};
+  return {
+    messages,
+    users,
+    connection,
+    countUsers,
+    joinRoom,
+    sendMessage,
+    closeConnection,
+  };
 };

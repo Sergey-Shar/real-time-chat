@@ -1,7 +1,6 @@
 import { useInput } from 'hooks/useInput';
 import React, { FC, useCallback } from 'react';
 import { TJoinRoom } from 'types';
-
 interface Lobbyprops {
   joinRoom: TJoinRoom
 }
@@ -17,15 +16,44 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
     },
     [inputRoom.value, inputUser.value, joinRoom],
   );
-
   return (
-    <form  onSubmit={onSubmit}>
-      <input type="text" placeholder="name" value={inputUser.value} onChange={inputUser.onChahge}/>
-      <input type="text" placeholder="room" value={inputRoom.value} onChange={inputRoom.onChahge}/>
-      <button  type="submit"  disabled={!inputUser.value || !inputRoom.value}>
-        Join
-      </button>
-    </form>
+    <div
+      className="flex justify-center items-center 
+     w-full h-screen dark:bg-gray-dark transition duration-500 ">
+      <form
+        className="flex flex-col justify-around items-center  w-96 h-[230px]"
+        onSubmit={onSubmit}>
+        <input
+          id="username"
+          className="w-64 md:w-80 
+          h-[50px] pl-2  border border-gray-light 
+          rounded-lg placeholder:text-chat"
+          type="text"
+          placeholder="Ввидите имя..."
+          value={inputUser.value}
+          onChange={inputUser.onChahge}
+        />
+        <input
+          id="room"
+          className="w-64 md:w-80  h-[50px] pl-2  
+          border border-gray-light rounded-lg
+          placeholder:text-chat"
+          type="text"
+          placeholder="Ввидите название чата..."
+          value={inputRoom.value}
+          onChange={inputRoom.onChahge}
+        />
+        <button
+          className="bg-blue 
+          transition duration-500
+          disabled:opacity-60  
+          w-64 md:w-80  h-[50px] text-white  rounded-lg"
+          type="submit"
+          disabled={!inputUser.value || !inputRoom.value}>
+					Присоединиться
+        </button>
+      </form>
+    </div>
   );
 };
 
