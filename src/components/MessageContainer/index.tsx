@@ -4,7 +4,12 @@ interface Containerprops {
 }
 export const MessageContainer: React.FC<Containerprops> = ({ messages }) => {
   return (
-    <div className="p-2 row-span-5 col-span-3 dark:bg-gray-dark overflow-auto touch-auto transition duration-500">
+    <div
+      className="p-2 row-span-5  col-span-4 
+      md:col-span-3 dark:bg-gray-dark
+      relative
+      overflow-auto touch-auto
+      transition duration-500">
       {messages.map((item: TMessageObj, i) => {
         return (
           <div className="m-2 p-2 w-fit rounded-lg" key={i}>
