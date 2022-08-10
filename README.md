@@ -10,6 +10,8 @@ This project is the implementation of the client part for a chat in which you ca
 
 * [React](https://ru.reactjs.org/)
 
+* [ASP.NET | SignalR](https://docs.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr)
+
 * [Typescript](https://www.typescriptlang.org/)
 
 * [Tailwind](https://tailwindcss.com/)
