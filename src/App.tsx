@@ -13,22 +13,18 @@ export const App: React.FC = () => {
     sendMessage,
     closeConnection,
   } = useSignalR();
-	
+
   return (
     <div className="dark:bg-gray-dark transition duration-500">
       <Header
         connection={connection}
         closeConnection={closeConnection}
         countUsers={countUsers}
-      />  
+      />
       {!connection ? (
         <Lobby joinRoom={joinRoom} />
       ) : (
-        <Chat
-          messages={messages}
-          sendMessage={sendMessage}
-          users={users}
-        />
+        <Chat messages={messages} sendMessage={sendMessage} users={users} />
       )}
     </div>
   );

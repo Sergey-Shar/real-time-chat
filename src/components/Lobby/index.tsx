@@ -1,5 +1,6 @@
+import { elementAcceptingRef } from '@mui/utils';
 import { useInput } from 'hooks/useInput';
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useEffect, useRef } from 'react';
 import { TJoinRoom } from 'types';
 interface Lobbyprops {
   joinRoom: TJoinRoom
@@ -8,6 +9,10 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
 
   const inputUser = useInput('');
   const inputRoom = useInput('');
+
+  const setFocus = useCallback((element: HTMLInputElement) => {
+    element?.focus();
+  }, []);
 
   const onSubmit = useCallback(
     (event: React.MouseEvent<HTMLFormElement>) => {
@@ -24,10 +29,13 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
         className="flex flex-col justify-around items-center  w-96 h-[230px]"
         onSubmit={onSubmit}>
         <input
+          ref={setFocus}
           id="username"
           className="w-64 md:w-80 
-          h-[50px] pl-2  border border-gray-light 
-          rounded-lg placeholder:text-chat"
+          h-[50px] pl-2  border
+           border-gray
+           dark:border-chat 
+          rounded-lg placeholder:text-gray"
           type="text"
           placeholder="Ввидите имя..."
           value={inputUser.value}
@@ -36,8 +44,8 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
         <input
           id="room"
           className="w-64 md:w-80  h-[50px] pl-2  
-          border border-gray-light rounded-lg
-          placeholder:text-chat"
+          border border-gray dark:border-chat rounded-lg
+          placeholder:text-gray"
           type="text"
           placeholder="Ввидите название чата..."
           value={inputRoom.value}
