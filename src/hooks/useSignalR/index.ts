@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import * as signalR from '@microsoft/signalr';
 import { HubConnection } from '@microsoft/signalr';
-import { TJoinRoom, TSendMessage } from 'types';
+import { TJoinRoom, TMessageObj, TSendMessage } from 'types';
 import { useAppSnackbar } from 'hooks/useSnackBar';
 import useSound from 'use-sound';
 
@@ -10,7 +10,8 @@ import soundSuccess from '../../sounds/success-bell.mp3';
 export const useSignalR = () => {
   const [connection, setConnection] = useState<HubConnection>();
 
-  const [messages, setMessages] = useState<any>([]);
+  const [messages, setMessages] =
+		useState<[] | ((messages: string[]) => (string | TMessageObj)[])>([]);
 
   const [users, setUsers] = useState([]);
 

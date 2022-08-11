@@ -1,6 +1,5 @@
-import { elementAcceptingRef } from '@mui/utils';
 import { useInput } from 'hooks/useInput';
-import React, { FC, useCallback, useEffect, useRef } from 'react';
+import React, { FC, useCallback } from 'react';
 import { TJoinRoom } from 'types';
 interface Lobbyprops {
   joinRoom: TJoinRoom
