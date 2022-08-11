@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { TMessageObj } from 'types';
 interface Containerprops {
-  messages: TMessageObj[];
+	messages: TMessageObj[];
 }
 export const MessageContainer: React.FC<Containerprops> = ({ messages }) => {
 
