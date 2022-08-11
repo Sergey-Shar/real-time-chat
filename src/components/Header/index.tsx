@@ -5,7 +5,7 @@ import { TCloseconnection } from 'types';
 import useSound from 'use-sound';
 import { useCallback } from 'react';
 
-import darkMode from '../../common/icons/moon.png';
+import darkMode from '../../common/icons/dark-mode.png';
 import lightMode from '../../common/icons/light-mode.png';
 import typingSound from '../../sounds/typing.mp3';
 interface HeaderProps {
@@ -34,7 +34,11 @@ export const Header: React.FC<HeaderProps> = ({
 		 dark:border-gray fixed w-full z-50 transition duration-500 ">
       <nav className="flex justify-between items-center h-[50px] px-5 shadow-md">
         <button
-          className="h-[40px] w-[40px] transition duration-500"
+          className="h-[40px] w-[40px]
+            border border-chat
+          bg-white rounded-3xl flex 
+           items-center justify-center 
+           transition duration-500"
           onClick={toogleTheme}>
           <img
             className="transition duration-500"
@@ -44,7 +48,9 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
         {connection && <UsersCount countUsers={countUsers} />}
         {connection && (
-          <button className="text-gray" onClick={closeConnection}>
+          <button
+            className="text-white rounded-2xl bg-green px-3 py-2 text-xs"
+            onClick={closeConnection}>
 						Покинуть чат
           </button>
         )}

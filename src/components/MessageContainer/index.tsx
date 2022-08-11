@@ -28,8 +28,8 @@ export const MessageContainer: React.FC<Containerprops> = ({ messages }) => {
       transition duration-500">
       {messages.map((item: TMessageObj, i) => {
         return (
-          <div className="m-2 p-2 w-fit rounded-lg" key={i}>
-            <div className="text-gray dark:text-purple text-xs transition duration-500">
+          <div className="m-2 px-5 py-3 w-fit bg-chat dark:bg-gray rounded-3xl" key={i}>
+            <div className="text-purple text-xs transition duration-500">
               {item?.user}
             </div>
             <div className="dark:text-white transition duration-500">

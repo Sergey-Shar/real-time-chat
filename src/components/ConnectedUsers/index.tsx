@@ -11,7 +11,7 @@ export const ConnectedUsers: React.FC<ConnectedUserProps> = ({ users }) => {
      duration-500  row-span-6  p-3 ">
       <h4 className="dark:text-gray">Участники чата:</h4>
       {users.map((user: string, index: number) => (
-        <p className="text-blue dark:text-purple text-lg" key={index}>
+        <p className="text-purple text-lg" key={index}>
           {user}
         </p>
       ))}
