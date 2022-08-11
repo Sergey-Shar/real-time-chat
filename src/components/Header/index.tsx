@@ -35,8 +35,7 @@ export const Header: React.FC<HeaderProps> = ({
       <nav className="flex justify-between items-center h-[50px] px-5 shadow-md">
         <button
           className="h-[40px] w-[40px]
-            border border-chat
-          bg-white rounded-3xl flex 
+          dark:bg-chat rounded-3xl flex 
            items-center justify-center 
            transition duration-500"
           onClick={toogleTheme}>
