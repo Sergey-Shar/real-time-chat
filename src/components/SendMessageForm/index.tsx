@@ -1,5 +1,5 @@
 import { useInput } from 'hooks/useInput';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { TSendMessage } from 'types';
 import useSound from 'use-sound';
 
@@ -24,6 +24,7 @@ export const SendMessageForm: React.FC<SendMessageFormProps> = ({
     },
     [inputMessage, play, sendMessage],
   );
+
   return (
     <form
       className="relative 
@@ -52,12 +53,18 @@ export const SendMessageForm: React.FC<SendMessageFormProps> = ({
         <button
           className="
         absolute 
+        flex
+        justify-center
+        items-center
         right-6
-        top-2
+        top-3 md:top-5
+        bg-chat
         inset-y-0.5
-        // h-12 md:h-20"
+        rounded-full
+        w-10 md:w-12
+        h-10 md:h-12"
           type="submit">
-          <img src={sendMessageIcon} alt="send icons"></img>
+          <img className="" src={sendMessageIcon} alt="send icons"></img>
         </button>
       )}
     </form>
