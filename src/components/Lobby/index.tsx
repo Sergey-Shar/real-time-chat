@@ -25,15 +25,14 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
       className="flex justify-center items-center 
      w-full h-screen dark:bg-gray-dark transition duration-500 ">
       <form
-        className="flex flex-col justify-around items-center  w-96 h-[230px]"
+        className="flex flex-col justify-around items-center rounded-lg bg-chat py-4 w-96 h-[270px]"
         onSubmit={onSubmit}>
         <input
           ref={setFocus}
           id="username"
           className="w-64 md:w-80 
           h-[50px] pl-2  border
-           border-gray
-           dark:border-chat 
+           border-gray-light
           rounded-lg placeholder:text-gray"
           type="text"
           placeholder="Ввидите имя..."
@@ -43,7 +42,7 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
         <input
           id="room"
           className="w-64 md:w-80  h-[50px] pl-2  
-          border border-gray dark:border-chat rounded-lg
+          border border-gray-light rounded-lg
           placeholder:text-gray"
           type="text"
           placeholder="Ввидите название чата..."

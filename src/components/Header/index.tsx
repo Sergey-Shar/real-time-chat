@@ -30,8 +30,11 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <div
-      className=" dark:bg-dark-gray dark:border-b
-		 dark:border-gray fixed w-full z-50 transition duration-500 ">
+      className="
+      bg-white
+       dark:bg-gray-dark
+       dark:border-b
+		 dark:border-gray fixed top-0 w-full z-50 transition duration-500 ">
       <nav className="flex justify-between items-center h-[50px] px-5 shadow-md">
         <button
           className="h-[40px] w-[40px]
