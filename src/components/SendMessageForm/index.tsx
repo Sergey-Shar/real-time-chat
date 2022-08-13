@@ -1,10 +1,11 @@
-import { useInput } from 'hooks/useInput';
 import React, { useCallback } from 'react';
-import { TSendMessage } from 'types';
+import { TSendMessage } from 'common/types';
 import useSound from 'use-sound';
+import { useInput } from 'common/hooks/useInput';
 
-import sendMessageSound from '../../sounds/send-message.mp3';
+import sendMessageSound from '../../common/sounds/send-message.mp3';
 import sendMessageIcon from '../../common/icons/send.png';
+
 interface SendMessageFormProps {
 	sendMessage: TSendMessage;
 }

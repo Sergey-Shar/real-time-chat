@@ -1,4 +1,4 @@
-import { UserCountProps } from 'types';
+import { UserCountProps } from 'common/types';
 
 export const UsersCount: React.FC<UserCountProps> = ({ countUsers }) => {
   return (

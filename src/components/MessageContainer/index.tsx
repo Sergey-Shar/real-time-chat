@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { TMessageObj } from 'types';
+import { TMessageObj } from 'common/types';
 interface Containerprops {
 	messages: TMessageObj[];
 }

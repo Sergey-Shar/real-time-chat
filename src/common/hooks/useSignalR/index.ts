@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import * as signalR from '@microsoft/signalr';
 import { HubConnection } from '@microsoft/signalr';
-import { TJoinRoom, TSendMessage } from 'types';
-import { useAppSnackbar } from 'hooks/useSnackBar';
+import { TJoinRoom, TSendMessage } from 'common/types';
+import { useAppSnackbar } from 'common/hooks/useSnackBar';
 import useSound from 'use-sound';
 
 import soundSuccess from '../../sounds/success-bell.mp3';

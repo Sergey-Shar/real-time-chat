@@ -1,13 +1,13 @@
 import { HubConnection } from '@microsoft/signalr';
 import { UsersCount } from 'components/UsersOnline';
-import { useDarkMode } from 'hooks/useDarkMode';
-import { TCloseconnection } from 'types';
+import { useDarkMode } from 'common/hooks/useDarkMode';
+import { TCloseconnection } from 'common/types';
 import useSound from 'use-sound';
 import { useCallback } from 'react';
 
 import darkMode from '../../common/icons/dark-mode.png';
 import lightMode from '../../common/icons/light-mode.png';
-import typingSound from '../../sounds/typing.mp3';
+import typingSound from '../../common/sounds/typing.mp3';
 interface HeaderProps {
 	connection: HubConnection | undefined;
 	countUsers: string;

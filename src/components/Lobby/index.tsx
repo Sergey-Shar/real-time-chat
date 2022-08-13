@@ -1,6 +1,6 @@
-import { useInput } from 'hooks/useInput';
+import { useInput } from 'common/hooks/useInput';
 import React, { FC, useCallback } from 'react';
-import { TJoinRoom } from 'types';
+import { TJoinRoom } from 'common/types';
 interface Lobbyprops {
   joinRoom: TJoinRoom
 }
