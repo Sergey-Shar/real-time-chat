@@ -33,6 +33,7 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
           className="w-64 md:w-80 
           h-[50px] pl-2  border
            border-gray-light
+          outline-gray
           rounded-lg placeholder:text-gray"
           type="text"
           placeholder="Ввидите имя..."
@@ -43,6 +44,7 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
           id="room"
           className="w-64 md:w-80  h-[50px] pl-2  
           border border-gray-light rounded-lg
+          outline-gray
           placeholder:text-gray"
           type="text"
           placeholder="Ввидите название чата..."
