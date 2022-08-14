@@ -4,16 +4,16 @@ module.exports = {
   darkMode: 'class',
   theme: {
     screens: {
-      'sm': '640px',
+      sm: '640px',
       // => @media (min-width: 640px) { ... }
 
-      'md': '768px',
+      md: '768px',
       // => @media (min-width: 768px) { ... }
 
-      'lg': '1024px',
+      lg: '1024px',
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1280px',
+      xl: '1280px',
       // => @media (min-width: 1280px) { ... }
 
       '2xl': '1536px',
@@ -23,7 +23,7 @@ module.exports = {
       chat: 'rgb(221,225,236)',
       black: 'rgb(45,48,51)',
       blue: 'rgb(28,104,255)',
-      'dark-blue': 'rgb(1,30,60)',
+      'dark-blue': 'rgba(49, 74, 235, 1)',
       purple: '#7e5bef',
       pink: '#ff49db',
       orange: '#ff7849',
@@ -33,6 +33,7 @@ module.exports = {
       gray: '#8492a6',
       white: 'rgb(255,255,255)',
       'gray-light': '#d3dce6',
+      red: 'rgb(234,33,25)',
     },
     extend: {},
   },

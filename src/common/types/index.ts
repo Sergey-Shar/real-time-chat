@@ -13,3 +13,15 @@ export interface TMessageObj {
   message: string;
 }
 
+export interface IValidations {
+	isEmpty: boolean;
+	isName?: boolean;
+}
+
+export interface IValid {
+	isEmpty: boolean;
+	isName: boolean;
+	errorEmpty: string;
+  errorName: string;
+}
+
