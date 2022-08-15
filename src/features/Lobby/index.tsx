@@ -8,7 +8,7 @@ interface Lobbyprops {
   joinRoom: TJoinRoom
 }
 
-export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
+export const Lobby: FC<Lobbyprops> = React.memo(({ joinRoom }) => {
   const inputUser = useInput('', { isEmpty: true, isName: true });
   const inputRoom = useInput('', { isEmpty: true });
   const { isDisabled, setIsDisabled } = useContext(DisabledContext);
@@ -74,6 +74,6 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
       </form>
     </div>
   );
-};
+});
 
 

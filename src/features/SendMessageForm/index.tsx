@@ -10,7 +10,7 @@ import { form, sendButton, textArea } from './styles';
 interface SendMessageFormProps {
 	sendMessage: TSendMessage;
 }
-export const SendMessageForm: React.FC<SendMessageFormProps> = ({
+export const SendMessageForm: React.FC<SendMessageFormProps> = React.memo(({
   sendMessage,
 }) => {
   const inputMessage = useInput('');
@@ -44,4 +44,4 @@ export const SendMessageForm: React.FC<SendMessageFormProps> = ({
       )}
     </form>
   );
-};
+});

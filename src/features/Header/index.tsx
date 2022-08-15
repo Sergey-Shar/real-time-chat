@@ -5,18 +5,21 @@ import { TCloseconnection } from 'common/types';
 import useSound from 'use-sound';
 import { useCallback } from 'react';
 
+import React from 'react';
+
 import darkMode from '../../common/icons/dark-mode.png';
 import lightMode from '../../common/icons/light-mode.png';
 import typingSound from '../../common/sounds/typing.mp3';
 
 import { button, header } from './styles';
+
 interface HeaderProps {
 	connection: HubConnection | undefined;
 	countUsers: string;
 	closeConnection: TCloseconnection;
 }
 
-export const Header: React.FC<HeaderProps> = ({
+export const Header: React.FC<HeaderProps> = React.memo(({
   connection,
   countUsers,
   closeConnection,
@@ -54,4 +57,4 @@ export const Header: React.FC<HeaderProps> = ({
       </nav>
     </div>
   );
-};
+});
