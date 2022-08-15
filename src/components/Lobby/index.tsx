@@ -2,6 +2,8 @@ import { useInput } from 'common/hooks/useInput';
 import React, { FC, useCallback, useContext} from 'react';
 import { TJoinRoom } from 'common/types';
 import { DisabledContext } from 'common/context';
+
+import { button } from './styles';
 interface Lobbyprops {
   joinRoom: TJoinRoom
 }
@@ -64,11 +66,7 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
         </span>
 
         <button
-          className="bg-blue 
-          transition duration-500
-          disabled:opacity-60
-          hover:bg-dark-blue  
-          w-64 md:w-80  h-[50px] text-white  rounded-lg"
+          className={button.join(' ')}
           type="submit"
           disabled={isDisabled}>
 					Присоединиться

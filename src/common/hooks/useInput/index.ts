@@ -1,4 +1,4 @@
-import { IValidations } from 'common/types';
+import { ISchema } from 'common/types';
 import React, { useCallback, useEffect, useState } from 'react';
 import useSound from 'use-sound';
 
@@ -20,7 +20,7 @@ interface UseInputValue {
   error: string
 }
 export const useInput = (
-  initialValue: string,validations?:IValidations): UseInputValue => {
+  initialValue: string,schema?:ISchema): UseInputValue => {
   const [value, setValue] = useState(initialValue);
   const [isDirty, setDirty] = useState(false);
   const [error, setError] = useState('');
@@ -47,7 +47,7 @@ export const useInput = (
 
   const { isEmpty, isName, errorEmpty, errorName } = useValidation(
     value,
-    validations,
+    schema,
   );
   
   useEffect(() => {

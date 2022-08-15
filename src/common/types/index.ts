@@ -13,7 +13,7 @@ export interface TMessageObj {
   message: string;
 }
 
-export interface IValidations {
+export interface ISchema {
 	isEmpty: boolean;
 	isName?: boolean;
 }

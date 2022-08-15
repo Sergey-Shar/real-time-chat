@@ -79,11 +79,12 @@ export const useSignalR = () => {
   const closeConnection = useCallback(async () => {
     try {
       await connection?.stop();
+      setNotDisabled();
     } catch (error) {
       const e = error as Error;
       snack(`Error:${e?.message}!`, 'error', 3000);
     }
-  }, [connection, snack]);
+  }, [connection, setNotDisabled, snack]);
 
   return {
     messages,

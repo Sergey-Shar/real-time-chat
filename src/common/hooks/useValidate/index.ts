@@ -1,7 +1,7 @@
-import { IValid, IValidations } from 'common/types';
+import { IValid, ISchema } from 'common/types';
 import { useEffect, useMemo, useState } from 'react';
 
-export const useValidation = (value: string, validations: IValidations | undefined):IValid => {
+export const useValidation = (value: string, schema: ISchema | undefined):IValid => {
     
   const [errorEmpty, setErrorEmpty] = useState('');
   const [errorName, setErrorName] = useState('');
@@ -12,7 +12,7 @@ export const useValidation = (value: string, validations: IValidations | undefin
   const regEX = useMemo(() => /^[a-zA-Z][a-zA-Z0-9-_.]{3,20}$/, []);
     
   useEffect(() => {
-    for (const validation in validations) {
+    for (const validation in schema) {
       switch (validation) {
       case 'isEmpty':
         if (value.trim().length) {
@@ -33,7 +33,7 @@ export const useValidation = (value: string, validations: IValidations | undefin
         break;
       }
     }
-  }, [regEX, validations, value]);
+  }, [regEX, schema, value]);
 
      
   return{isEmpty,isName,errorEmpty,errorName};

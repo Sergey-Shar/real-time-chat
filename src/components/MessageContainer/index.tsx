@@ -1,5 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { TMessageObj } from 'common/types';
+
+import { container } from './styles';
+
 interface Containerprops {
 	messages: TMessageObj[];
 }
@@ -21,18 +24,14 @@ export const MessageContainer: React.FC<Containerprops> = ({ messages }) => {
   return (
     <div
       ref={messageRef}
-      className="p-2 row-span-5  col-span-4 
-      md:col-span-3 dark:bg-gray-dark
-      relative
-      overflow-auto touch-auto
-      transition duration-500">
+      className={container.join(' ')}>
       {messages.map((item: TMessageObj, i) => {
         return (
-          <div className="m-2 px-5 py-3 w-fit bg-chat dark:bg-gray rounded-3xl" key={i}>
-            <div className="text-purple text-xs transition duration-500">
+          <div className="m-2 px-5 py-3 w-fit bg-white dark:bg-dark-blue rounded-3xl" key={i}>
+            <div className="text-purple dark:text-gray text-xs transition duration-500">
               {item?.user}
             </div>
-            <div className="dark:text-white transition duration-500">
+            <div className="dark:text-white transition duration-500 text-sm">
               {item?.message}
             </div>
           </div>

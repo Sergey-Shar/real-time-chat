@@ -20,12 +20,12 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     },
     colors: {
-      chat: 'rgb(221,225,236)',
+      chat: 'rgb(239,242,245)',
       black: 'rgb(45,48,51)',
       blue: 'rgb(28,104,255)',
-      'dark-blue': 'rgba(49, 74, 235, 1)',
+      'dark-blue': 'rgb(34,51,133)',
       purple: '#7e5bef',
-      pink: '#ff49db',
+      pink: '#FAEBD7',
       orange: '#ff7849',
       green: 'rgb(66,183,41)',
       yellow: '#ffc82c',

@@ -8,6 +8,8 @@ import { useCallback } from 'react';
 import darkMode from '../../common/icons/dark-mode.png';
 import lightMode from '../../common/icons/light-mode.png';
 import typingSound from '../../common/sounds/typing.mp3';
+
+import { button, header } from './styles';
 interface HeaderProps {
 	connection: HubConnection | undefined;
 	countUsers: string;
@@ -30,17 +32,10 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <div
-      className="
-      bg-white
-       dark:bg-gray-dark
-       dark:border-b
-		 dark:border-gray fixed top-0 w-full z-50 transition duration-500 ">
+      className={header.join(' ')}>
       <nav className="flex justify-between items-center h-[50px] px-5 shadow-md">
         <button
-          className="h-[40px] w-[40px]
-          dark:bg-chat rounded-3xl flex 
-           items-center justify-center 
-           transition duration-500"
+          className={button.join(' ')}
           onClick={toogleTheme}>
           <img
             className="transition duration-500"
