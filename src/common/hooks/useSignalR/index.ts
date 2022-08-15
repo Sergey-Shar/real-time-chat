@@ -23,7 +23,7 @@ export const useSignalR = () => {
 
   const [play] = useSound(soundSuccess);
 
-  const joinRoom: TJoinRoom = async (user, room) => {
+  const joinRoom: TJoinRoom = async (user, room, avatar) => {
     try {
       const connection = new signalR.HubConnectionBuilder()
         .withUrl('https://signalr-test-chat.herokuapp.com/chat', {

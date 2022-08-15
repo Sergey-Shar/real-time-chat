@@ -18,7 +18,9 @@ export const ConnectedUsers: React.FC<ConnectedUserProps> = ({ users }) => {
           key={index}
           className="flex border-b border-chat dark:border-gray py-3">
           <div className={userContainer.join(' ')}>
-            <span className="text-2xl">{emodji[index]}</span>
+            <span className="text-2xl">
+              {emodji[Math.floor(Math.random() * emodji.length)]}
+            </span>
           </div>
           <p className="text-purple text-lg ml-2">{user}</p>
         </div>
