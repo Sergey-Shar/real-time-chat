@@ -1,5 +1,5 @@
 import { HubConnection } from '@microsoft/signalr';
-import { UsersCount } from 'components/UsersOnline';
+import { UsersCount } from 'features/UsersOnline';
 import { useDarkMode } from 'common/hooks/useDarkMode';
 import { TCloseconnection } from 'common/types';
 import useSound from 'use-sound';

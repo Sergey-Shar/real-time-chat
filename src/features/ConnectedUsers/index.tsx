@@ -7,8 +7,6 @@ interface ConnectedUserProps {
 
 export const ConnectedUsers: React.FC<ConnectedUserProps> = ({ users }) => {
 
-  const i = Math.floor(Math.random() * emodji.length);
-
   return (
     <div className={container.join(' ')}>
       <h4 className="dark:text-gray">Участники чата:</h4>

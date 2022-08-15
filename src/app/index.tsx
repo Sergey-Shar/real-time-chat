@@ -1,7 +1,7 @@
-import { Lobby } from 'components/Lobby';
-import { Chat } from 'components/Chat';
+import { Lobby } from 'features/Lobby';
+import { Chat } from 'features/Chat';
 import { useSignalR } from 'common/hooks/useSignalR';
-import { Header } from 'components/Header';
+import { Header } from 'features/Header';
 
 export const App: React.FC = () => {
   const {

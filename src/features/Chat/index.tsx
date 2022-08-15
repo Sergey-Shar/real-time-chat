@@ -1,6 +1,6 @@
-import { ConnectedUsers } from 'components/ConnectedUsers';
-import { MessageContainer } from 'components/MessageContainer';
-import { SendMessageForm } from 'components/SendMessageForm';
+import { ConnectedUsers } from 'features/ConnectedUsers';
+import { MessageContainer } from 'features/MessageContainer';
+import { SendMessageForm } from 'features/SendMessageForm';
 import { TMessageObj, TSendMessage } from 'common/types';
 interface ChatProps {
 	messages: TMessageObj[];
