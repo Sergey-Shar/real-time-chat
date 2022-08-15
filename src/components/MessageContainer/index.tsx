@@ -27,7 +27,7 @@ export const MessageContainer: React.FC<Containerprops> = ({ messages }) => {
       className={container.join(' ')}>
       {messages.map((item: TMessageObj, i) => {
         return (
-          <div className="m-2 px-5 py-3 w-fit bg-white dark:bg-dark-blue rounded-3xl" key={i}>
+          <div className="m-2 px-5 py-3 w-fit bg-chat dark:bg-dark-blue rounded-3xl" key={i}>
             <div className="text-purple dark:text-gray text-xs transition duration-500">
               {item?.user}
             </div>

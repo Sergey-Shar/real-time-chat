@@ -34,7 +34,7 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
      w-full h-screen dark:bg-gray-dark transition duration-500 ">
       <form
         className="relative flex flex-col justify-around items-center 
-        rounded-lg bg-chat py-4 w-96 h-[270px]"
+        rounded-lg bg-chat py-4 w-96 h-[270px] mx-3"
         onSubmit={onSubmit}>
         <input
           ref={inputUser.ref}
@@ -47,7 +47,7 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
           onChange={inputUser.onChahge}
           onBlur={inputUser.onBlur}
         />
-        <span className="absolute top-20 left-10 text-xs text-red">
+        <span className="absolute top-20 left-5 md:left-10 text-xs text-red">
           {inputUser.isDirty && inputUser.error}
         </span>
 
@@ -61,7 +61,7 @@ export const Lobby: FC<Lobbyprops> = ({ joinRoom }) => {
           onChange={inputRoom.onChahge}
           onBlur={inputRoom.onBlur}
         />
-        <span className="absolute bottom-24 left-10  text-xs text-red">
+        <span className="absolute bottom-24 left-5 md:left-10   text-xs text-red">
           {inputRoom.isDirty && inputRoom.error}
         </span>
 

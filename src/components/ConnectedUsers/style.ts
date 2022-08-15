@@ -1,6 +1,6 @@
 export const container = [
   'dark:bg-gray-dark hidden md:block',
-  'dark:border-r dark: border-gray',
+  'border-r border-gray-light dark:border-gray',
   'transition  duration-500 row-span-6  p-3',
 ];
 
