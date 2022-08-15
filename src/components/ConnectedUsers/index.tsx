@@ -1,4 +1,3 @@
-import { useRandom } from 'common/hooks/useRandom';
 import { emodji } from 'common/models';
 
 import { container, userContainer } from './style';
@@ -8,7 +7,7 @@ interface ConnectedUserProps {
 
 export const ConnectedUsers: React.FC<ConnectedUserProps> = ({ users }) => {
 
-  const avatar = useRandom(emodji);
+  const i = Math.floor(Math.random() * emodji.length);
 
   return (
     <div className={container.join(' ')}>
@@ -19,7 +18,7 @@ export const ConnectedUsers: React.FC<ConnectedUserProps> = ({ users }) => {
           key={index}
           className="flex border-b border-chat dark:border-gray py-3">
           <div className={userContainer.join(' ')}>
-            <span className="text-2xl">{avatar}</span>
+            <span className="text-2xl">{emodji[i]}</span>
           </div>
           <p className="text-purple text-lg ml-2">{user}</p>
         </div>
