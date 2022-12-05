@@ -1,6 +1,6 @@
 # Realtime chat
 
-[Demo](https://sergey-realtime-chat.herokuapp.com/)
+[Demo](https://real-time-chat-lovat.vercel.app/)
 
 ## About project:
 
